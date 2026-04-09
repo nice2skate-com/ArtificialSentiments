@@ -733,26 +733,34 @@
         </ul>
       </div>
 
-      <form class="contact-form reveal reveal-delay-1" onsubmit="handleSubmit(event)">
+      <form class="contact-form reveal reveal-delay-1"
+            action="https://formspree.io/f/xaqlzkee"
+            method="POST"
+            onsubmit="handleSubmit(event)">
+
+        <!-- Formspree hidden fields -->
+        <input type="hidden" name="_subject" value="ANFRAGE AN ARTIFICIAL SENTIMENTS">
+        <input type="hidden" name="_language" value="de">
+
         <div class="form-group">
           <label class="form-label">Vorname *</label>
-          <input type="text" class="form-input" placeholder="Max" required>
+          <input type="text" name="vorname" class="form-input" placeholder="Max" required>
         </div>
         <div class="form-group">
           <label class="form-label">Nachname *</label>
-          <input type="text" class="form-input" placeholder="Mustermann" required>
+          <input type="text" name="nachname" class="form-input" placeholder="Mustermann" required>
         </div>
         <div class="form-group">
           <label class="form-label">E-Mail-Adresse *</label>
-          <input type="email" class="form-input" placeholder="mail@beispiel.de" required>
+          <input type="email" name="_replyto" class="form-input" placeholder="mail@beispiel.de" required>
         </div>
         <div class="form-group">
           <label class="form-label">Telefon</label>
-          <input type="tel" class="form-input" placeholder="+49 ...">
+          <input type="tel" name="telefon" class="form-input" placeholder="+49 ...">
         </div>
         <div class="form-group">
           <label class="form-label">Art des Events *</label>
-          <select class="form-select" required>
+          <select name="art_des_events" class="form-select" required>
             <option value="" disabled selected>Bitte wählen</option>
             <option>Hochzeit</option>
             <option>Corporate Event / Firmenfeier</option>
@@ -763,7 +771,7 @@
         </div>
         <div class="form-group">
           <label class="form-label">Gewünschte Leistung</label>
-          <select class="form-select">
+          <select name="leistung" class="form-select">
             <option value="" disabled selected>Bitte wählen</option>
             <option>DJ-Set</option>
             <option>DJ + Licht</option>
@@ -773,11 +781,11 @@
         </div>
         <div class="form-group">
           <label class="form-label">Eventdatum *</label>
-          <input type="date" class="form-input" required>
+          <input type="date" name="eventdatum" class="form-input" required>
         </div>
         <div class="form-group">
           <label class="form-label">Ungefähre Gästezahl</label>
-          <select class="form-select">
+          <select name="gaestezahl" class="form-select">
             <option value="" disabled selected>Bitte wählen</option>
             <option>Bis 50 Gäste</option>
             <option>50–100 Gäste</option>
@@ -788,11 +796,11 @@
         </div>
         <div class="form-group form-full">
           <label class="form-label">Veranstaltungsort / Stadt</label>
-          <input type="text" class="form-input" placeholder="z.B. Hamburg, Schloss Benrath ...">
+          <input type="text" name="veranstaltungsort" class="form-input" placeholder="z.B. Hamburg, Schloss Benrath ...">
         </div>
         <div class="form-group form-full">
           <label class="form-label">Eure Nachricht *</label>
-          <textarea class="form-textarea" placeholder="Erzählt uns ein bisschen von eurem Event — Wünsche, Ideen, Fragen ..." required></textarea>
+          <textarea name="nachricht" class="form-textarea" placeholder="Erzählt uns ein bisschen von eurem Event — Wünsche, Ideen, Fragen ..." required></textarea>
         </div>
         <div class="form-full">
           <button type="submit" class="btn btn-primary form-submit-btn">Anfrage absenden</button>

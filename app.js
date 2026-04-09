@@ -104,23 +104,38 @@ function filterEq(btn, cat) {
   });
 }
 
-// ── Contact Form ──────────────────────────────────────────────────
-function handleSubmit(e) {
+// ── Contact Form — Formspree ──────────────────────────────────────
+async function handleSubmit(e) {
   e.preventDefault();
+  const form = e.target;
   const success = document.getElementById('form-success');
-  const btn = e.target.querySelector('.form-submit-btn');
+  const btn = form.querySelector('.form-submit-btn');
 
   btn.textContent = 'Wird gesendet…';
   btn.disabled = true;
 
-  // Simulate async send (replace with real endpoint)
-  setTimeout(() => {
-    e.target.reset();
+  try {
+    const res = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (res.ok) {
+      form.reset();
+      success.style.display = 'block';
+      setTimeout(() => { success.style.display = 'none'; }, 7000);
+    } else {
+      const data = await res.json();
+      const msg = data.errors ? data.errors.map(e => e.message).join(', ') : 'Fehler beim Senden. Bitte versuche es erneut.';
+      alert(msg);
+    }
+  } catch {
+    alert('Netzwerkfehler. Bitte versuche es erneut.');
+  } finally {
     btn.textContent = 'Anfrage absenden';
     btn.disabled = false;
-    success.style.display = 'block';
-    setTimeout(() => { success.style.display = 'none'; }, 6000);
-  }, 1200);
+  }
 }
 
 // ── Service Cards — hover gold line via JS for gap fix ────────────
